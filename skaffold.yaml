@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta11
+kind: Config
+# {{ cookiecutter }}
+metadata:
+  name: full-stack-fastapi
+build:
+  artifacts:
+    - image: backend
+      docker:
+        dockerfile: docker/backend.dockerfile
+        noCache: false
+        squash: false
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*.yaml
+  kubeContext: minikube
