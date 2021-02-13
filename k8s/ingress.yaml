@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: minikube-ingress
+spec:
+  rules:
+    - host: app
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: backend
+              servicePort: 8000
