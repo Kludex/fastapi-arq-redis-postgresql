@@ -30,6 +30,16 @@ spec:
           ports:
             - containerPort: 8000
           env:
+            - name: POSTGRES_SERVER
+              value: postgres-service.default.svc.cluster.local
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
             - name: PROJECT_NAME
               value: "Potato"
+          envFrom:
+            - configMapRef:
+                name: postgres-configuration
       restartPolicy: Always
